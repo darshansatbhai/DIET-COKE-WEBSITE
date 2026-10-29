@@ -18,12 +18,12 @@ export function initScrollFeedback() {
   function pulse() {
     if (!enabled || document.body.classList.contains('menu-open')) return;
     const now = performance.now();
-    // Let the longer double pulse finish before the next scroll pulse starts.
-    if (now - lastPulse < 450) return;
+    // Match the Red Bull experience without interrupting an active pulse.
+    if (now - lastPulse < 280) return;
     lastPulse = now;
     if (navigator.userActivation?.hasBeenActive) unlocked = true;
     if (canVibrate && unlocked) {
-      try { vibrationBlocked = navigator.vibrate([180, 35, 180]) === false; }
+      try { vibrationBlocked = navigator.vibrate([100, 25, 100]) === false; }
       catch { vibrationBlocked = true; }
     }
     flash.classList.remove('pulsing');
